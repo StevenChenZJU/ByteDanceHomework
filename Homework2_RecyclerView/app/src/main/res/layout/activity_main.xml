@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#191818"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#191818"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tx_brand_message"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/message_cn"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorBrightGray" />
+        <TextView
+            android:id="@+id/tx_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/contact_cn"
+            android:textColor="@color/colorBrightGray"
+
+            android:clickable="true"
+            android:onClick="onClick" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/rl_bar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:background="#191818">
+        <ImageButton
+            android:id="@+id/btn_fans"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="fitCenter"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_launcher" />
+        <ImageButton
+            android:id="@+id/btn_like"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:scaleType="fitCenter"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/btn_mine"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:scaleType="fitCenter"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_launcher" />
+        <ImageButton
+            android:id="@+id/btn_comment"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitCenter"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/colorBrightGray"
+            android:text="@string/fans_cn" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/colorBrightGray"
+            android:text="@string/like_cn" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/colorBrightGray"
+            android:text="@string/mine_cn" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/colorBrightGray"
+            android:text="@string/comment_cn" />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_vertical"
+        android:background="#201E1E"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:layout_below="@id/rl_bar"/>
+
+    <LinearLayout
+        android:id="@+id/ll_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#191818"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tx_frontpage"
+            android:layout_weight="1.0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/frontpage_cn"
+            android:textColor="@color/colorBrightGray"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="onClick"
+            />
+        <TextView
+            android:id="@+id/tx_subscribe"
+            android:layout_weight="1.0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/subscribe_cn"
+            android:textColor="@color/colorBrightGray"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="onClick"
+            />
+        <ImageButton
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/btn_add"
+            android:layout_weight="1.0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="onClick"/>
+
+        <TextView
+            android:id="@+id/tx_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/message_cn"
+            android:textColor="@color/colorBrightGray" />
+        <TextView
+            android:id="@+id/tx_me"
+            android:layout_weight="1.0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/me_cn"
+            android:textColor="@color/colorBrightGray"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="onClick"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

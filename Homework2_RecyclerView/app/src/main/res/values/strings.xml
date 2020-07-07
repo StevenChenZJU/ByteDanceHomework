@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RecyclerViewHW</string>
+    <string name="zero">0</string>
+    <string name="message_cn">消息</string>
+    <string name="contact_cn">联系人</string>
+    <string name="fans_cn">粉丝</string>
+    <string name="like_cn">赞</string>
+    <string name="mine_cn">\@我的</string>
+    <string name="comment_cn">评论</string>
+    <string name="frontpage_cn">首页</string>
+    <string name="subscribe_cn">关注</string>
+    <string name="me_cn">我</string>
+</resources>
