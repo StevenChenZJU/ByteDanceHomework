@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private List<MessageData> messageList;
 
+    private int viewCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        DefaultItemAnimator animator = new DefaultItemAnimator();
 //        animator.setAddDuration(3000);
 //        recyclerView.setItemAnimator(animator);
+
+        // counting views
+        ViewCounter viewCounter = new ViewCounter();
+        viewCount = viewCounter.countView(findViewById(android.R.id.content).getRootView());
     }
 
     @Override
@@ -114,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_add:
-                Toast.makeText(this, "Push Add", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "View Count: " + this.viewCount, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_comment:
                 Toast.makeText(this, "Push Comment", Toast.LENGTH_SHORT).show();
