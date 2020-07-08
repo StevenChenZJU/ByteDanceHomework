@@ -159,6 +159,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onItemCLick(int position, MessageData data) {
         Intent intent = new Intent(this, ChatActivity.class);
         intent.putExtra("item_number", position);
+        messageList.get(position).setMsgNumber(Integer.valueOf(0)); // clear unread messages
+        mAdapter.notifyItemChanged(position); // need to use Adapter to notify the change of items
         startActivity(intent);
     }
 
