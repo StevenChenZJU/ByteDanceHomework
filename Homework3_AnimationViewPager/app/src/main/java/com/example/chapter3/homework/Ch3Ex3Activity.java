@@ -42,6 +42,14 @@ public class Ch3Ex3Activity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int i) {
+                // How many PlaceholderFragment in ViewPager
+                int count = 0;
+                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                    if(fragment instanceof PlaceholderFragment) {
+                        count ++;
+                    }
+                }
+                Log.d(TAG, "ViewPager has " + count + " PlaceholderFragemnt");
                 Log.d(TAG, "pager.getCurrentItem(): " + pager.getCurrentItem());
                 Log.d(TAG, "i: " + i);
                 final Fragment curFragment = (Fragment) pager.getAdapter().instantiateItem(pager, pager.getCurrentItem());
@@ -69,11 +77,17 @@ public class Ch3Ex3Activity extends AppCompatActivity {
         pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int i) {
-                Fragment fragment = new PlaceholderFragment();
-                Bundle args = new Bundle();
-                // Our object is just an integer :-P
-                args.putInt(PlaceholderFragment.ARG_OBJECT, i);
-                fragment.setArguments(args);
+                Fragment fragment;
+                if(i == 0) {
+                    fragment= new PlaceholderFragment();
+                    Bundle args = new Bundle();
+                    // Our object is just an integer :-P
+                    args.putInt(PlaceholderFragment.ARG_OBJECT, i);
+                    fragment.setArguments(args);
+                }
+                else {
+                    fragment = new FragmentA();
+                }
                 return fragment;
             }
 
