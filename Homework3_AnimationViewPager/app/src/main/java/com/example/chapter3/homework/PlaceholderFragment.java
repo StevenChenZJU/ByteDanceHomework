@@ -173,8 +173,8 @@ public class PlaceholderFragment extends Fragment {
                 .ofFloat(mLoadingView, "alpha", mLoadingView.getAlpha(), 0F).setDuration(1000);
         ObjectAnimator listAlpha = ObjectAnimator
                 .ofFloat(mRecyclerView, "alpha", mRecyclerView.getAlpha(), 1F).setDuration(1000);
-        lottieAlpha.setRepeatCount(1);
-        listAlpha.setRepeatCount(1);
+        lottieAlpha.setRepeatCount(0);
+        listAlpha.setRepeatCount(0);
 
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(lottieAlpha, listAlpha);
@@ -184,9 +184,4 @@ public class PlaceholderFragment extends Fragment {
         animatorSet.start();
     }
 
-    public void startLoading() {
-        Log.d(TAG, "Start Loading");
-        mLoadingView.setAlpha(1F);
-        mRecyclerView.setAlpha(0F);
-    }
 }

@@ -34,6 +34,15 @@ public class Ch3Ex3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ch3ex3);
         final ViewPager pager = findViewById(R.id.view_pager);
+        mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Fragment fragment = (Fragment) pager.getAdapter().instantiateItem(pager, pager.getCurrentItem());
+                if(fragment instanceof PlaceholderFragment)
+                    ((PlaceholderFragment) fragment).runLoadingAnimation();
+            }
+        }, 2000);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -57,8 +66,6 @@ public class Ch3Ex3Activity extends AppCompatActivity {
                     // set loading
                     Log.d(TAG, "postDelayed: " + i);
                     final PlaceholderFragment curPlaceholderFragment = (PlaceholderFragment) curFragment;
-                    curPlaceholderFragment.startLoading();
-                    mHandler = new Handler();
                     mHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -78,16 +85,13 @@ public class Ch3Ex3Activity extends AppCompatActivity {
             @Override
             public Fragment getItem(int i) {
                 Fragment fragment;
-                if(i == 0) {
-                    fragment= new PlaceholderFragment();
-                    Bundle args = new Bundle();
-                    // Our object is just an integer :-P
-                    args.putInt(PlaceholderFragment.ARG_OBJECT, i);
-                    fragment.setArguments(args);
-                }
-                else {
-                    fragment = new FragmentA();
-                }
+
+                fragment= new PlaceholderFragment();
+                Bundle args = new Bundle();
+                // Our object is just an integer :-P
+                args.putInt(PlaceholderFragment.ARG_OBJECT, i);
+                fragment.setArguments(args);
+
                 return fragment;
             }
 
