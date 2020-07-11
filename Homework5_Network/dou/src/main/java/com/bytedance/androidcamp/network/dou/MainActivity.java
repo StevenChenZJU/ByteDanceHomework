@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
     private Uri mSelectedVideo;
     public Button mBtn;
     private Button mBtnRefresh;
-    private Button mBtnMineOnly;
-    private boolean mMineOnly = false;
+    private Button mBtnMineOnly; // 选择是否只显示自己的视频
+    private boolean mMineOnly = false; // 内部boolean变量，存储当前选择
     private String mMyStudentID = "18888913725";
     private String mMyUsername = "yanwenchen";
 
@@ -303,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.READ_EXTERNAL_STORAGE)) {
             new AlertDialog.Builder(this)
                     .setTitle("Permission needed")
-                    .setMessage("This permission is needed because of this and that")
+                    .setMessage("This permission is needed because of the requirement of uploading local files.")
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
