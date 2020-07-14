@@ -1,8 +1,11 @@
 package com.bytedance.todolist.database;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+
+import com.bytedance.todolist.activity.TodoListActivity;
 
 import java.util.List;
 
@@ -17,6 +20,9 @@ public interface TodoListDao {
 
     @Insert
     long addTodo(TodoListEntity entity);
+
+    @Delete
+    void deleteTodo(TodoListEntity entity);
 
     @Query("DELETE FROM todo")
     void deleteAll();

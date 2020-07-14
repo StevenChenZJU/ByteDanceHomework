@@ -1,6 +1,7 @@
 package com.bytedance.todolist.activity;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.MainThread;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 public class TodoListAdapter extends RecyclerView.Adapter<TodoListItemHolder> {
     private List<TodoListEntity> mDatas;
+    private OnItemClickListener mOnItemClickListener;
 
     public TodoListAdapter() {
         mDatas = new ArrayList<>();
@@ -30,8 +32,17 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListItemHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TodoListItemHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TodoListItemHolder holder, final int position) {
         holder.bind(mDatas.get(position));
+        holder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemCLick(v, mDatas.get(position));
+                }
+            }
+        });
+
     }
 
     @Override
@@ -45,5 +56,13 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListItemHolder> {
         notifyDataSetChanged();
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mOnItemClickListener = listener;
+    }
 
+    public interface OnItemClickListener {
+        void onItemCLick(View v, TodoListEntity data);
+
+        void onItemLongCLick(View v, TodoListEntity data);
+    }
 }

@@ -29,6 +29,19 @@ public class TodoListActivity extends AppCompatActivity {
     private TodoListAdapter mAdapter;
     private FloatingActionButton mFab;
 
+    public void deleteEntity(final TodoListEntity entity) {
+        new Thread() {
+            @Override
+            public void run() {
+                TodoListDao dao = TodoListDatabase.inst(TodoListActivity.this).todoListDao();
+                if(entity != null) {
+                    dao.deleteTodo(entity);
+                    Snackbar.make(mFab, R.string.hint_delete_todo, Snackbar.LENGTH_SHORT).show();
+                }
+            }
+        }.start();
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +52,27 @@ public class TodoListActivity extends AppCompatActivity {
         final RecyclerView recyclerView = findViewById(R.id.rv_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new TodoListAdapter();
+        mAdapter.setOnItemClickListener(new TodoListAdapter.OnItemClickListener() {
+
+            @Override
+            public void onItemCLick(View v, TodoListEntity data) {
+                switch (v.getId()) {
+                    case R.id.bt_delete:
+                        deleteEntity(data);
+                        loadFromDatabase();
+                        break;
+                    case R.id.cb_done:
+                        break;
+                }
+            }
+
+            @Override
+            public void onItemLongCLick(View v, TodoListEntity data) {
+
+            }
+        });
         recyclerView.setAdapter(mAdapter);
+
 
         mFab = findViewById(R.id.fab);
         mFab.setOnClickListener(new View.OnClickListener() {
@@ -107,4 +140,6 @@ public class TodoListActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/cb_done"
+        android:layout_toEndOf="@id/cb_done"
         android:textColor="@android:color/black"
         tools:text="This is the content"/>
     <TextView
@@ -23,8 +23,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_content"
         android:layout_marginTop="3dp"
-        android:layout_toRightOf="@id/cb_done"
+        android:layout_toEndOf="@id/cb_done"
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray"
         tools:text="This is the timestamp"/>
+    <Button
+        android:id="@+id/bt_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="@string/button_cross"
+        android:textSize="20sp"
+        android:background="@android:color/transparent"/>
+
 </RelativeLayout>

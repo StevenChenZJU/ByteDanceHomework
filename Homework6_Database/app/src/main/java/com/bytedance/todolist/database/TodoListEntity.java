@@ -23,9 +23,13 @@ public class TodoListEntity {
     @ColumnInfo(name = "time")
     private Date mTime;
 
+    @ColumnInfo(name = "Done")
+    private Boolean mDone;
+
     public TodoListEntity(String mContent, Date mTime) {
         this.mContent = mContent;
         this.mTime = mTime;
+        this.mDone = Boolean.FALSE;
     }
 
     public String getContent() {
@@ -50,5 +54,13 @@ public class TodoListEntity {
 
     public void setId(Long mId) {
         this.mId = mId;
+    }
+
+    public Boolean getDone() {
+        return mDone;
+    }
+
+    public void setDone(Boolean mDone) {
+        this.mDone = mDone;
     }
 }

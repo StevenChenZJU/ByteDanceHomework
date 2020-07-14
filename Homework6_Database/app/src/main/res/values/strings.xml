@@ -4,5 +4,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="hint_insert_complete">Mock数据插入完成</string>
     <string name="hint_add_todo">输入TODO事项描述</string>
+    <string name="hint_delete_todo">成功删除todo项</string>
     <string name="button_confirm">确认</string>
+    <string name="button_cross">X</string>
 </resources>
