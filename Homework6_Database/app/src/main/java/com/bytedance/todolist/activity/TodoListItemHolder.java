@@ -45,19 +45,12 @@ public class TodoListItemHolder extends RecyclerView.ViewHolder {
     public void bind(final TodoListEntity entity) {
         mContent.setText(entity.getContent());
         mTimestamp.setText(formatDate(entity.getTime()));
-        mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    mContent.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-                    mContent.setAlpha(DELETED_ALPHA);
-                    entity.setDone(Boolean.TRUE);
-                    mCheckBox.setClickable(false);
-                }
-                mContent.invalidate();
-            }
-        });
-
+        if(entity.getDone()) {
+            mContent.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            mContent.setAlpha(DELETED_ALPHA);
+            mCheckBox.setClickable(false);
+            mCheckBox.setChecked(true);
+        }
     }
 
     private String formatDate(Date date) {
@@ -77,5 +70,14 @@ public class TodoListItemHolder extends RecyclerView.ViewHolder {
             mCheckBox.setOnLongClickListener(listener);
             mDelete.setOnLongClickListener(listener);
         }
+    }
+
+    public void setDone() {
+        if(mCheckBox.isChecked()) {
+            mContent.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            mContent.setAlpha(DELETED_ALPHA);
+            mCheckBox.setClickable(false);
+        }
+        mContent.invalidate();
     }
 }

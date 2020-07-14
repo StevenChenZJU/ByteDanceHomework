@@ -12,6 +12,7 @@ import com.bytedance.todolist.R;
 import com.bytedance.todolist.database.TodoListEntity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -38,7 +39,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListItemHolder> {
             @Override
             public void onClick(View v) {
                 if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemCLick(v, mDatas.get(position));
+                    mOnItemClickListener.onItemCLick(v, position, mDatas.get(position));
                 }
             }
         });
@@ -61,8 +62,15 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListItemHolder> {
     }
 
     public interface OnItemClickListener {
-        void onItemCLick(View v, TodoListEntity data);
+        void onItemCLick(View v, int position, TodoListEntity data);
 
-        void onItemLongCLick(View v, TodoListEntity data);
+        void onItemLongCLick(View v, int position, TodoListEntity data);
+    }
+
+    public void moveToEnd(TodoListEntity entity, int position) {
+        Collections.swap(mDatas, position, mDatas.size() - 1);
+
+        notifyDataSetChanged();
+
     }
 }

@@ -55,19 +55,35 @@ public class TodoListActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new TodoListAdapter.OnItemClickListener() {
 
             @Override
-            public void onItemCLick(View v, TodoListEntity data) {
+            public void onItemCLick(View v, final int position, final TodoListEntity data) {
                 switch (v.getId()) {
                     case R.id.bt_delete:
                         deleteEntity(data);
                         loadFromDatabase();
                         break;
                     case R.id.cb_done:
+                        data.setDone(Boolean.TRUE);
+                        TodoListItemHolder holder = (TodoListItemHolder) recyclerView
+                                .getChildViewHolder((View) v.getParent());
+                        if(holder != null) {
+                            holder.setDone();
+//                            recyclerView.postDelayed(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    mAdapter.moveToEnd(data, position);
+//                                }
+//                            }, 500);
+                            Log.d(TAG, "Update successfully");
+                        }
+                        else {
+                            Log.d(TAG, "Holder is null!");
+                        }
                         break;
                 }
             }
 
             @Override
-            public void onItemLongCLick(View v, TodoListEntity data) {
+            public void onItemLongCLick(View v, int position, TodoListEntity data) {
 
             }
         });
