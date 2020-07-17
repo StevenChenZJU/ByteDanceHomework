@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.io.File;
@@ -35,7 +36,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private ImageView mImageView;
+
     private Button mButton;
     private static final int REQUEST_CODE_RECORD_PATH = 1;
     private static final int CAMERA_PERMISSION_CODE = 2;
@@ -60,12 +61,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (isRecording) {
-                    mButton.setText(R.string.record);
-                    mMediaRecorder.stop();
-                    mMediaRecorder.reset();
-                    mMediaRecorder.release();
-                    mMediaRecorder = null;
-                    mCamera.lock();
+                    try {
+                        mButton.setText(R.string.record);
+                        mMediaRecorder.stop();
+                        mMediaRecorder.reset();
+                        mMediaRecorder.release();
+                        mMediaRecorder = null;
+                        mCamera.lock();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(view.getContext(), R.string.fail_stop, Toast.LENGTH_SHORT);
+                    } finally {
+                        if(mMediaRecorder != null) {
+                            mMediaRecorder.reset();
+                            mMediaRecorder.release();
+                            mMediaRecorder = null;
+                        }
+                    }
 
                     mVideoView.setVisibility(View.VISIBLE);
                     mVideoView.setVideoPath(mp4Path);
@@ -73,8 +85,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     if(prepareVideoRecorder()) {
-                        mButton.setText(R.string.stop);
-                        mMediaRecorder.start();
+                        try {
+                            mButton.setText(R.string.stop);
+                            mMediaRecorder.start();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(view.getContext(), R.string.fail_start, Toast.LENGTH_SHORT);
+                        }
                     }
                 }
                 isRecording = !isRecording;

@@ -2,4 +2,6 @@
     <string name="app_name">HW8Camera</string>
     <string name="record">录制</string>
     <string name="stop">停止</string>
+    <string name="fail_stop">Fail at stop!</string>
+    <string name="fail_start">Fail at start!</string>
 </resources>
